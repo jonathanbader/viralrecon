@@ -3455,6 +3455,7 @@ workflow.onComplete {
     def html_template = engine.createTemplate(hf).make(email_fields)
     def email_html = html_template.toString()
 
+    log.info("max_multiqc_email_size: " + params.max_multiqc_email_size)
     // Render the sendmail template
     def smail_fields = [ email: email_address, subject: subject, email_txt: email_txt, email_html: email_html, baseDir: "$baseDir", mqcFile: mqc_report, mqcMaxSize: params.max_multiqc_email_size.toBytes() ]
     def sf = new File("$baseDir/assets/sendmail_template.txt")
