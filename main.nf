@@ -3456,7 +3456,6 @@ workflow.onComplete {
     def email_html = html_template.toString()
 
     log.info("max_multiqc_email_size: " + params.max_multiqc_email_size)
-    log.info("toBytes: " + params.max_multiqc_email_size.toBytes())
     log.info("type: " + params.max_multiqc_email_size.getClass())
 
     // Render the sendmail template
