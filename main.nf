@@ -338,6 +338,7 @@ checkHostname()
 if (params.fasta.endsWith('.gz')) {
     process GUNZIP_FASTA {
         label 'error_retry'
+        label 'process_high'
         if (params.save_reference) {
             publishDir "${params.outdir}/genome", mode: params.publish_dir_mode
         }
