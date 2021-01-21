@@ -349,6 +349,7 @@ if (params.fasta.endsWith('.gz')) {
         path "$unzip" into ch_fasta
 
         script:
+        log.info("GUNZIP_FASTA: " + task.cpus)
         unzip = fasta.toString() - '.gz'
         """
         pigz -f -d -p $task.cpus $fasta
@@ -1076,7 +1077,7 @@ if (params.skip_markduplicates) {
 
         script:
         def avail_mem = 3
-        if (!task.memory) {
+        if (!get_software_versions.memory) {
             log.info "[Picard MarkDuplicates] Available memory not known - defaulting to 3GB. Specify process memory requirements to change this."
         } else {
             avail_mem = task.memory.toGiga()
