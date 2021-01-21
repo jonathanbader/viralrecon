@@ -338,7 +338,6 @@ checkHostname()
 if (params.fasta.endsWith('.gz')) {
     process GUNZIP_FASTA {
         label 'error_retry'
-        label 'process_high'
         if (params.save_reference) {
             publishDir "${params.outdir}/genome", mode: params.publish_dir_mode
         }
@@ -350,7 +349,6 @@ if (params.fasta.endsWith('.gz')) {
         path "$unzip" into ch_fasta
 
         script:
-        log.info("GUNZIP_FASTA: " + task.cpus)
         unzip = fasta.toString() - '.gz'
         """
         pigz -f -d -p $task.cpus $fasta
