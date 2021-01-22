@@ -1076,7 +1076,7 @@ if (params.skip_markduplicates) {
 
         script:
         def avail_mem = 3
-        if (!get_software_versions.memory) {
+        if (!task.memory) {
             log.info "[Picard MarkDuplicates] Available memory not known - defaulting to 3GB. Specify process memory requirements to change this."
         } else {
             avail_mem = task.memory.toGiga()
